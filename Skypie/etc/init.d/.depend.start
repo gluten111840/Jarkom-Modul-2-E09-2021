@@ -1,0 +1,7 @@
+TARGETS = php7.0-fpm rsyslog killprocs apache2 single rsync rc.local ondemand
+INTERACTIVE = apache2
+apache2: rsyslog
+single: killprocs
+rsync: rsyslog
+rc.local: php7.0-fpm apache2 rsyslog rsync
+ondemand: php7.0-fpm apache2 rsyslog rsync

@@ -1,0 +1,7 @@
+TARGETS = rsyslog killprocs bind9 single rsync rc.local ondemand
+INTERACTIVE =
+bind9: rsyslog
+single: killprocs
+rsync: rsyslog bind9
+rc.local: bind9 rsyslog rsync
+ondemand: bind9 rsyslog rsync

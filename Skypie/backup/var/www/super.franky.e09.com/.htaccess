@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !\bfranky.png\b
+RewriteRule franky http://www.super.franky.e09.com/public/images/franky.png$1 [L,R=301]

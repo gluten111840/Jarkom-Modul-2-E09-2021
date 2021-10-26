@@ -1,0 +1,9 @@
+TARGETS = apache-htcacheclean php7.0-fpm apache2 urandom sendsigs rsyslog umountnfs.sh hwclock.sh umountfs umountroot halt reboot
+sendsigs: php7.0-fpm apache2 apache-htcacheclean
+rsyslog: apache2 apache-htcacheclean sendsigs
+umountnfs.sh: php7.0-fpm apache2 apache-htcacheclean sendsigs rsyslog
+hwclock.sh: rsyslog
+umountfs: urandom php7.0-fpm umountnfs.sh apache2 apache-htcacheclean hwclock.sh
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot

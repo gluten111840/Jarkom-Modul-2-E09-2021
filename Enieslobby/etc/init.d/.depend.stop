@@ -1,0 +1,9 @@
+TARGETS = bind9 urandom sendsigs rsyslog umountnfs.sh hwclock.sh umountfs umountroot halt reboot
+sendsigs: bind9
+rsyslog: bind9 sendsigs
+umountnfs.sh: bind9 sendsigs rsyslog
+hwclock.sh: rsyslog
+umountfs: urandom bind9 umountnfs.sh hwclock.sh
+umountroot: umountfs
+halt: umountroot
+reboot: umountroot

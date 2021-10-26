@@ -1,0 +1,14 @@
+/.
+/usr
+/usr/bin
+/usr/bin/khost
+/usr/share
+/usr/share/doc
+/usr/share/doc/knot-host
+/usr/share/doc/knot-host/copyright
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/khost.1.gz
+/usr/bin/host
+/usr/share/doc/knot-host/changelog.Debian.gz
+/usr/share/man/man1/host.1.gz
