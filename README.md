@@ -141,10 +141,17 @@ Lalu dapat dihasilkan isi dari web http://www.general.mecha.franky.e09.com yang 
 ![image](https://user-images.githubusercontent.com/58933506/139474371-db177685-1b39-4b31-affb-6a617540e125.png)
 
 
-### 16. Dan setiap kali mengakses IP Skypie akan diahlikan secara otomatis ke www.franky.yyy.com
+### 16. Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke www.franky.yyy.com
 
+Karena pada beberapa soal sebelumnya, kita sudah berhasil mendaftarkan domain www.franky.e09.com ke IP Skypie, maka ketika kita mengakses langsung IP Skypie, kita akan secara langsung dialihkan ke www.franky.e09.com
+
+* Enieslobby -> /etc/bind/kaizoku/franku.e09.com
 ![image](https://user-images.githubusercontent.com/58933506/139474404-4db106af-c3b2-42e0-9738-d8e191bb2376.png)
+
+* Melakukan testing pada client Loguetown
 ![image](https://user-images.githubusercontent.com/58933506/139474428-7dac6daa-81c0-408f-ad7e-0c64e5353e9d.png)
+
+* Didapatkan hasil sebagai berikut
 ![image](https://user-images.githubusercontent.com/58933506/139474443-d6b6cdde-a6ad-4c71-a871-3bc8aa0a2dc1.png)
 
 
