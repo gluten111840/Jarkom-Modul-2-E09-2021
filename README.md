@@ -157,11 +157,42 @@ Karena pada beberapa soal sebelumnya, kita sudah berhasil mendaftarkan domain ww
 
 ### 17. Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website www.super.franky.yyy.com, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju franky.png. Maka bantulah Luffy untuk membuat konfigurasi dns dan web server ini!
 
+Hal pertama yang kita lakukan adalah dengan membuat file ```.htaccess``` pada ```/var/www/super.franky.e09.com/public/images``` dengan memasukkan syntax sebagai berikut
+
+```
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !\bfranky.png\b
+RewriteRule franky http://www.super.franky.e09.com/public/images/franky.png$1 [L,R=301]
+```
+
+di mana dilakukan untuk melakukan redirect secara custom
+
+```RewriteCond %{REQUEST_FILENAME} !\bfranky.png\b``` digunakan untuk memfilter setiap file yang tidak bernama ```franky.png```
+
+Lalu di-rewrite lagi dengan menggunakan ```RewriteRule franky http://www.super.franky.e09.com/public/images/franky.png$1 [L,R=301]``` yang mendeteksi jika terdapat file yang memiliki substring ```franky``` akan diredirect ke file http://www.super.franky.e09.com/public/images/franky.png
+
 ![image](https://user-images.githubusercontent.com/58933506/139483386-c0d71c4f-20bf-48ec-bc42-a75c08fa1b8c.png)
+
+Lalu dengan menambahkan 
+```
+AllowOverride All
+```
+pada file ```/etc/apache2/sites-available/super.franky.e09.com.conf```
+
 ![image](https://user-images.githubusercontent.com/58933506/139474500-f517bab1-783b-4be0-b5c1-4d58450d467d.png)
+
+Melakukan testing pada client
+
 ![image](https://user-images.githubusercontent.com/58933506/139474519-ea6d572f-d7ac-4a39-948e-7b766ad8e430.png)
+
+Ketika mendownload file ```frankysupersecretfood.cursed``` maka, web akan mendirect ke file ```franky.png```, karena pada file ```frankysupersecretfood.cursed``` terdapat substring ```franky```.
+
 ![image](https://user-images.githubusercontent.com/58933506/139474529-291f2cec-48a6-4cd3-b1f2-c21886f45929.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474553-9e3b2a55-ab0d-44b6-a7a2-247bb997e5c0.png)
+
+Jika tidak terdapat substring ```franky```, maka akan mendownload file yang sebenarnya ditunjuk, seperti file ```background_frank.jpg``` akan mendownload filenya sendiri.
+
 ![image](https://user-images.githubusercontent.com/58933506/139474570-24dbf4d3-aad1-4a43-9d47-b7dc91ad5576.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474587-327be6b5-24cc-4fcd-9c39-141d5e722b7f.png)
 
