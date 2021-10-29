@@ -54,14 +54,33 @@ Dari gambar di atas, Alias telah berjalan dengan benar.
 
 ### 14. Dan Luffy meminta untuk web www.general.mecha.franky.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
 
+Dari subdomain www.general.mecha.franky.e09.com yang telah dibuat, kita harus membuat virtualhost untuk port 15000 dan 15500 dengan membuat file /etc/apache2/sites-available/general.mecha.franky.e09.com-15000.conf dan /etc/apache2/sites-available/general.mecha.franky.e09.com-15500.conf
+* /etc/apache2/sites-available/general.mecha.franky.e09.com-15000.conf
 ![image](https://user-images.githubusercontent.com/58933506/139473945-d089a50a-aca3-4b9d-8346-b70167bda235.png)
+* /etc/apache2/sites-available/general.mecha.franky.e09.com-15500.conf
 ![image](https://user-images.githubusercontent.com/58933506/139473971-8520dff3-e857-4385-93e9-951855d5c233.png)
+
+Lalu menambahkan 
+``` 
+Listen 15000
+Listen 15500
+```
+pada file /etc/apache2/Ports.conf agar apache2 bisa mengakses port 15000 dan port 15500
+
 ![image](https://user-images.githubusercontent.com/58933506/139473999-a06140be-c1f2-45f8-a430-e74ece90000d.png)
+
+Lalu melakukan testing dengan mengakses http://general.mecha.franky.e09.com:15000 dari client
+
 ![image](https://user-images.githubusercontent.com/58933506/139474045-3e7a02b4-1e3f-42d9-a95f-48076b9f5358.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474068-2703b1a1-62c1-4066-a166-872a5af36a18.png)
+
+Dari gambar di atas, akses ke http://general.mecha.franky.e09.com dengan port 15000 bisa dilakukan. \
+Lalu melakukan testing lagi untuk port 15500 dengan mengakses http://general.mecha.franky.e09.com:15500 dari client
+
 ![image](https://user-images.githubusercontent.com/58933506/139474142-cd768274-42b6-43b4-a37e-eeb6ac7e761b.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474178-05892c6f-a178-4f88-892b-ffb13d0d6101.png)
 
+Dari gambar di atas, akses ke http://general.mecha.franky.e09.com dengan port 15500 bisa dilakukan.
 
 ### 15. Dengan authentikasi username luffy dan password onepiece dan file di /var/www/general.mecha.franky.yyy
 
