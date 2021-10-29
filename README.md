@@ -157,7 +157,7 @@ Karena pada beberapa soal sebelumnya, kita sudah berhasil mendaftarkan domain ww
 
 ### 17. Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website www.super.franky.yyy.com, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju franky.png. Maka bantulah Luffy untuk membuat konfigurasi dns dan web server ini!
 
-![image](https://user-images.githubusercontent.com/58933506/139474474-56dc1a97-6a2b-4f35-b68f-7aabfa190dea.png)
+![image](https://user-images.githubusercontent.com/58933506/139483386-c0d71c4f-20bf-48ec-bc42-a75c08fa1b8c.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474500-f517bab1-783b-4be0-b5c1-4d58450d467d.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474519-ea6d572f-d7ac-4a39-948e-7b766ad8e430.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474529-291f2cec-48a6-4cd3-b1f2-c21886f45929.png)
