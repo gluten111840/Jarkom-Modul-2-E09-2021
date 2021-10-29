@@ -80,19 +80,64 @@ Lalu melakukan testing lagi untuk port 15500 dengan mengakses http://general.mec
 ![image](https://user-images.githubusercontent.com/58933506/139474142-cd768274-42b6-43b4-a37e-eeb6ac7e761b.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474178-05892c6f-a178-4f88-892b-ffb13d0d6101.png)
 
-Dari gambar di atas, akses ke http://general.mecha.franky.e09.com dengan port 15500 bisa dilakukan.
+Dari gambar di atas, akses ke http://general.mecha.franky.e09.com dengan port 15500 bisa dilakukan dan mengarah ke directory yang sama dengan port 15000.
 
 ### 15. Dengan authentikasi username luffy dan password onepiece dan file di /var/www/general.mecha.franky.yyy
 
+Dengan membuat file ```.htpasswd``` pada ```/etc/apache2/``` dengan memasukkan syntax
+```
+htpasswd -c /etc/apache2/.htpasswd luffy
+```
+dan memasukkan password ```onepiece```, yang jika kita membuka file ```.htpasswd``` tersebut, password telah terenkripsi
+
 ![image](https://user-images.githubusercontent.com/58933506/139474203-2e31ddd8-2459-47e0-9f1b-ef9de7c03fd6.png)
+
+Lalu di dalam file /etc/apache2/sites-available/general.mecha.franky.e09.com-15000.conf, dimasukkan config Authentication 
+```
+<Directory /var/www/general.mecha.franky.e09.com>
+    AuthType Basic
+    AuthName "Restricted Content"
+    AuthUserFile /etc/apache2/.htpasswd
+    Require valid-user
+</Directory>
+```
+
 ![image](https://user-images.githubusercontent.com/58933506/139474221-e5f0b125-e200-40f8-861d-a1b475a687da.png)
+
+Lalu dilakukan testing dari client dengan memasukkan port 15000
+
 ![image](https://user-images.githubusercontent.com/58933506/139474246-44e10e49-fab6-4037-969e-701e13981e20.png)
+
+Kita diminta untuk memasukkan user yang telah terdaftar pada ```/etc/apache2/.htpasswd``` yaitu ```luffy``` dan password ```onepiece```
+
 ![image](https://user-images.githubusercontent.com/58933506/139474275-76696f68-9b7e-4faf-8748-afc86d57418d.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474287-ebcd262a-67e2-4d26-a672-0b03a0f0052a.png)
+
+Lalu dapat dihasilkan isi dari web http://www.general.mecha.franky.e09.com yang diakses dari port 15000.
+
 ![image](https://user-images.githubusercontent.com/58933506/139474306-e7b160a8-2a20-45cd-a8dd-b52c47b08b9a.png)
+
+Lalu di dalam file /etc/apache2/sites-available/general.mecha.franky.e09.com-15500.conf, juga dimasukkan config Authentication 
+```
+<Directory /var/www/general.mecha.franky.e09.com>
+    AuthType Basic
+    AuthName "Restricted Content"
+    AuthUserFile /etc/apache2/.htpasswd
+    Require valid-user
+</Directory>
+```
+
 ![image](https://user-images.githubusercontent.com/58933506/139474326-e3838a6d-8fc2-41a5-a69a-0b31c29fa7fb.png)
+
+Lalu dilakukan testing dari client dengan memasukkan port 15500
+
+Kita diminta untuk memasukkan user yang telah terdaftar pada ```/etc/apache2/.htpasswd``` yaitu ```luffy``` dan password ```onepiece```
+
 ![image](https://user-images.githubusercontent.com/58933506/139474345-f45cb185-88a9-4398-b2f4-be12e198cd05.png)
 ![image](https://user-images.githubusercontent.com/58933506/139474355-f41c05e2-4357-4c2d-8223-45e8297a1afb.png)
+
+Lalu dapat dihasilkan isi dari web http://www.general.mecha.franky.e09.com yang diakses dari port 15500.
+
 ![image](https://user-images.githubusercontent.com/58933506/139474371-db177685-1b39-4b31-affb-6a617540e125.png)
 
 
