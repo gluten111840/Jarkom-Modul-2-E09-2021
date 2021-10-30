@@ -9,7 +9,7 @@
 
 ### 1. Luffy adalah seorang yang akan jadi Raja Bajak Laut. Demi membuat Luffy menjadi Raja Bajak Laut, Nami ingin membuat sebuah peta, bantu Nami untuk membuat peta berikut:
 
-![image](https://user-images.githubusercontent.com/58933506/139471365-510af117-2c5e-480d-9f06-68beb0879175.png)
+![image](https://user-images.githubusercontent.com/58933506/139471365-510af117-2c5e-480d-9f06-68beb0879175.png) \
 
 ### EniesLobby akan dijadikan sebagai DNS Master, Water7 akan dijadikan DNS Slave, dan Skypie akan digunakan sebagai Web Server. Terdapat 2 Client yaitu Loguetown, dan Alabasta. Semua node terhubung pada router Foosha, sehingga dapat mengakses internet.
 
@@ -18,55 +18,55 @@ Pertama, tambahkan node dan hubungkan masing-masing node hingga sesuai dengan ga
 ### 2. Luffy ingin menghubungi Franky yang berada di EniesLobby dengan denden mushi. Kalian diminta Luffy untuk membuat website utama dengan mengakses franky.yyy.com dengan alias www.franky.yyy.com pada folder kaizoku
 
 Pertama, buat file ```franky.e09.com``` pada folder /etc/bind/kaizoku di EniesLobby. Lalu atur nama domain dan IP yang menuju ke EniesLobby (192.204.2.2) seperti pada gambar berikut. 
-![no 2(1)](https://user-images.githubusercontent.com/81345045/139519546-4f231398-f4b2-4eef-84f1-ebed9d07d7f1.png) 
+![no 2(1)](https://user-images.githubusercontent.com/81345045/139519546-4f231398-f4b2-4eef-84f1-ebed9d07d7f1.png) \
 Lalu pada file ```/etc/bind/named.conf.local``` di EniesLobby, buat zone ```franky.e09.com``` dengan type master dan file /etc/bind/kaizoku/franky.e09.com. 
-![no 2(2)](https://user-images.githubusercontent.com/81345045/139519556-81787796-a324-48bb-a021-251e6d490892.png) 
+![no 2(2)](https://user-images.githubusercontent.com/81345045/139519556-81787796-a324-48bb-a021-251e6d490892.png) \
 Kemudian ping www.franky.e09.com pada node LogueTown dan akan menampilkan tampilan sebagai berikut. 
-![no 2(3)](https://user-images.githubusercontent.com/81345045/139519570-d07de655-d1e6-41ee-a4c8-267621a4b4d5.png) 
+![no 2(3)](https://user-images.githubusercontent.com/81345045/139519570-d07de655-d1e6-41ee-a4c8-267621a4b4d5.png) \
 
 ### 3. Setelah itu buat subdomain super.franky.yyy.com dengan alias www.super.franky.yyy.com yang diatur DNS nya di EniesLobby dan mengarah ke Skypie
 
 Pertama, atur nama subdomain, CNAME dan IP yang menuju ke Skypie (192.204.2.4) pada file ```franky.e09.com``` di folder /etc/bind/kaizoku pada node EniesLobby seperti pada gambar berikut.
-![no 3(1)](https://user-images.githubusercontent.com/81345045/139519579-0a5569db-38a9-4bc9-92d0-c4007ad31982.png) 
+![no 3(1)](https://user-images.githubusercontent.com/81345045/139519579-0a5569db-38a9-4bc9-92d0-c4007ad31982.png) \
 Lalu ping ```www.super.franky.e09.com``` pada node LogueTown dan akan memunculkan tampilan seperti pada gambar berikut
-![no 3(2)](https://user-images.githubusercontent.com/81345045/139519584-fbc3171a-e41d-4539-a81b-879173813d74.png)
+![no 3(2)](https://user-images.githubusercontent.com/81345045/139519584-fbc3171a-e41d-4539-a81b-879173813d74.png) \
 
 ### 4. Buat juga reverse domain untuk domain utama
 
 Pertama, tambahkan zone ```2.204.192.in-addr.arpa``` dengan type master dan file ```/etc/bind/kaizoku/2.204.192.in-addr.arpa``` pada file /etc/bind/named.conf.local di node EniesLobby.
-![no 4(1)](https://user-images.githubusercontent.com/81345045/139519592-e17f2407-8ba8-4586-afbf-00613dbe649d.png) 
+![no 4(1)](https://user-images.githubusercontent.com/81345045/139519592-e17f2407-8ba8-4586-afbf-00613dbe649d.png) \
 Lalu buat file ```2.204.192.in-addr.arpa ``` pada folder /etc/bind/kaizoku di EniesLobby. Lalu atur nama domain dan PTR yang menuju ke franky.e09.com seperti pada gambar berikut.
-![no 4(2)](https://user-images.githubusercontent.com/81345045/139519600-67b74470-c597-4aff-8651-e8fa3ee7d201.png) 
+![no 4(2)](https://user-images.githubusercontent.com/81345045/139519600-67b74470-c597-4aff-8651-e8fa3ee7d201.png) \
 Kemudian lakukan pengecekkan dengan command ```host -t PTR 192.204.2.2 yang akan mengarah ke franky.09.com
-![no 4(3)](https://user-images.githubusercontent.com/81345045/139519605-95fb7ca3-9ce7-4ab2-af25-935d0e2b41cb.png) 
+![no 4(3)](https://user-images.githubusercontent.com/81345045/139519605-95fb7ca3-9ce7-4ab2-af25-935d0e2b41cb.png) \
 
 ### 5. Supaya tetap bisa menghubungi Franky jika server EniesLobby rusak, maka buat Water7 sebagai DNS Slave untuk domain utama
 
 Pertama, edit file /etc/bind/named.conf.local pada node EniesLobby dengan menambahkan notify yes, also-notify dan allow-transfer dengan IP Water7 seperti pada gambar berikut
-![no 5(1)](https://user-images.githubusercontent.com/81345045/139519609-bd38d38e-5fd3-498a-80c2-ce7578930922.png) 
+![no 5(1)](https://user-images.githubusercontent.com/81345045/139519609-bd38d38e-5fd3-498a-80c2-ce7578930922.png) \
 Lalu, edit file /etc/bind/named.conf.local pada node Water7 dengan menambahkan zone ```franky.e09.com``` dengan type slave, masters IP EniesLobby, dan file /etc/bind/kaizoku/franky.e09.com. 
-![no 5(2)](https://user-images.githubusercontent.com/81345045/139519616-c39b051a-4c39-49cf-b860-3c2ceeee554a.png) 
+![no 5(2)](https://user-images.githubusercontent.com/81345045/139519616-c39b051a-4c39-49cf-b860-3c2ceeee554a.png) \
 Kemudian stop node EniesLobby
-![no 5(3)](https://user-images.githubusercontent.com/81345045/139519630-a3c8459d-5d99-4e8f-bb55-116fdb13bbec.png) 
+![no 5(3)](https://user-images.githubusercontent.com/81345045/139519630-a3c8459d-5d99-4e8f-bb55-116fdb13bbec.png) \
 Lalu lakukan pengecekkan dengan melakukan ping franky.e09.com pada node LogueTown yang akan menerima paket dari IP EniesLobby walaupun telah dimatikan.
-![no 5(4)](https://user-images.githubusercontent.com/81345045/139519634-394c8f11-dc1c-40c5-acfc-125cb2936a45.png) 
+![no 5(4)](https://user-images.githubusercontent.com/81345045/139519634-394c8f11-dc1c-40c5-acfc-125cb2936a45.png) \
 
 ### 6. Setelah itu terdapat subdomain mecha.franky.yyy.com dengan alias www.mecha.franky.yyy.com yang didelegasikan dari EniesLobby ke Water7 dengan IP menuju ke Skypie dalam folder sunnygo
 
 Pertama, ubah file /etc/bind/named.conf.options pada node EniesLobby dengan meng-comment ```dnssec-validation auto;``` dan menambahkan ```allow-query(any;};```.
-![no 6(1)](https://user-images.githubusercontent.com/81345045/139519640-b6034493-092f-4d23-aa45-379348f4f638.png) 
+![no 6(1)](https://user-images.githubusercontent.com/81345045/139519640-b6034493-092f-4d23-aa45-379348f4f638.png) \
 Kemudian, ubah file /etc/bind/named.conf.local di node EniesLobby pada bagian zone franky.e09.com sehingga menyisakan baris type, file, dan allow-transfer. 
-![no 6(2)](https://user-images.githubusercontent.com/81345045/139519657-9dea5c0f-fe70-48ed-932f-30a8c05a0f8c.png) 
+![no 6(2)](https://user-images.githubusercontent.com/81345045/139519657-9dea5c0f-fe70-48ed-932f-30a8c05a0f8c.png) \
 Lalu, ubah /etc/bind/kaizoku/franky.e09.com pada node EniesLobby menjadi domain utama yang IP yang menuju ke node Skypie, dan membuat domain mecha yang didelegasikan ke IP Water7
-![no 6(3)](https://user-images.githubusercontent.com/81345045/139519665-c66161c2-403e-4fc5-af5e-219b1d2b5918.png) 
+![no 6(3)](https://user-images.githubusercontent.com/81345045/139519665-c66161c2-403e-4fc5-af5e-219b1d2b5918.png) \
 Kemudian, ubah file /etc/bind/named.conf.options pada node Water7 dengan meng-comment ```dnssec-validation auto;``` dan menambahkan ```allow-query(any;};```.
-![no 6(4)](https://user-images.githubusercontent.com/81345045/139519669-c3429d62-98d9-44dd-9775-28cf6036e2c5.png) 
+![no 6(4)](https://user-images.githubusercontent.com/81345045/139519669-c3429d62-98d9-44dd-9775-28cf6036e2c5.png) \
 Lalu, edit file /etc/bind/named.conf.local pada node Water7 dengan menambahkan zone ```mecha.franky.e09.com``` dengan type master dan file ```/etc/bind/sunnygo/mecha.franky.e09.com```.
-![no 6(5)](https://user-images.githubusercontent.com/81345045/139519675-72544c2f-f505-4855-bf41-0decffcb6276.png) 
+![no 6(5)](https://user-images.githubusercontent.com/81345045/139519675-72544c2f-f505-4855-bf41-0decffcb6276.png) \
 Kemudian, buat file /etc/bind/sunnygo/mecha.franky.e09.com pada node Water7 dan mengatur domainnya menuju mecha.franky.e09.com dengan IP Skypie (192.204.2.4) dengan CNAME www.
-![no 6(6)](https://user-images.githubusercontent.com/81345045/139519690-f4265590-b432-473c-a0ee-9e45ccb12bef.png) 
+![no 6(6)](https://user-images.githubusercontent.com/81345045/139519690-f4265590-b432-473c-a0ee-9e45ccb12bef.png) \
 Lalu lakukan ping www.mecha.franky.e09.com pada node LogueTown dan akan menerima paket dari IP Skypie
-![no 6(7)](https://user-images.githubusercontent.com/81345045/139519693-05fdb34c-7afb-4349-8f48-c11a5dfe4fef.png) 
+![no 6(7)](https://user-images.githubusercontent.com/81345045/139519693-05fdb34c-7afb-4349-8f48-c11a5dfe4fef.png) \
 
 ### 7. Untuk memperlancar komunikasi Luffy dan rekannya, dibuatkan subdomain melalui Water7 dengan nama general.mecha.franky.yyy.com dengan alias www.general.mecha.franky.yyy.com yang mengarah ke Skypie
 
