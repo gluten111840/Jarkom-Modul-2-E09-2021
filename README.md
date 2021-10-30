@@ -51,6 +51,8 @@ Kemudian stop node EniesLobby \
 Lalu lakukan pengecekkan dengan melakukan ping franky.e09.com pada node LogueTown yang akan menerima paket dari IP EniesLobby walaupun telah dimatikan. \
 ![no 5(4)](https://user-images.githubusercontent.com/81345045/139519634-394c8f11-dc1c-40c5-acfc-125cb2936a45.png) 
 
+* Kendala : awalnya ketika Enieslobby distop, dia mengarah ke IP Skypie, setelah mengubah serial, maka ketika diping, dia mengarah dengan benar ke IP Enieslobby
+
 ### 6. Setelah itu terdapat subdomain mecha.franky.yyy.com dengan alias www.mecha.franky.yyy.com yang didelegasikan dari EniesLobby ke Water7 dengan IP menuju ke Skypie dalam folder sunnygo
 
 Pertama, ubah file /etc/bind/named.conf.options pada node EniesLobby dengan meng-comment ```dnssec-validation auto;``` dan menambahkan ```allow-query(any;};```. \
