@@ -37,7 +37,7 @@ Pertama, tambahkan zone ```2.204.192.in-addr.arpa``` dengan type master dan file
 ![no 4(1)](https://user-images.githubusercontent.com/81345045/139519592-e17f2407-8ba8-4586-afbf-00613dbe649d.png) \
 Lalu buat file ```2.204.192.in-addr.arpa ``` pada folder /etc/bind/kaizoku di EniesLobby. Lalu atur nama domain dan PTR yang menuju ke franky.e09.com seperti pada gambar berikut. \
 ![no 4(2)](https://user-images.githubusercontent.com/81345045/139519600-67b74470-c597-4aff-8651-e8fa3ee7d201.png) \
-Kemudian lakukan pengecekkan dengan command ```host -t PTR 192.204.2.2 yang akan mengarah ke franky.09.com \
+Kemudian lakukan pengecekkan dengan command ```host -t PTR 192.204.2.2``` yang akan mengarah ke franky.09.com \
 ![no 4(3)](https://user-images.githubusercontent.com/81345045/139519605-95fb7ca3-9ce7-4ab2-af25-935d0e2b41cb.png) 
 
 ### 5. Supaya tetap bisa menghubungi Franky jika server EniesLobby rusak, maka buat Water7 sebagai DNS Slave untuk domain utama
