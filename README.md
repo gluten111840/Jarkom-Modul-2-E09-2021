@@ -70,15 +70,51 @@ Lalu lakukan ping www.mecha.franky.e09.com pada node LogueTown dan akan menerima
 
 ### 7. Untuk memperlancar komunikasi Luffy dan rekannya, dibuatkan subdomain melalui Water7 dengan nama general.mecha.franky.yyy.com dengan alias www.general.mecha.franky.yyy.com yang mengarah ke Skypie
 
+Seperti yang sudah dijelaskan pada nomor 6, pertama buka file /etc/bind/sunnygo/mecha.franky.e09.com pada Water7 dan buat subdomain general yang mengarah ke IP skypie dan alias www.general yang mengarah ke general.mecha.franky.e09.com. \
+![image](https://user-images.githubusercontent.com/7587945/139522604-983de02f-699f-4d36-a1a0-13bcb2a674d9.png) \
+Lalu lakukan ping www.mecha.franky.e09.com pada node LogueTown dan akan menerima paket dari IP Skypie \
+![no 6(7)](https://user-images.githubusercontent.com/81345045/139519693-05fdb34c-7afb-4349-8f48-c11a5dfe4fef.png) 
+
 ### 8. Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.franky.yyy.com. Pertama, luffy membutuhkan webserver dengan DocumentRoot pada /var/www/franky.yyy.com.
+
+Pertama, buka file /etc/bind/kaizoku/franky.e09.com pada EniesLobby dan arahkan yang awalnya ke 2.2 menjadi 2.4. \
+![image](https://user-images.githubusercontent.com/7587945/139522866-3d80249b-a203-467a-b4ef-87f4fad576f7.png) \
+Lalu buka /etc/bind/kaizoku/2.204.192.in-addr/arpa pada EniesLobby dan ubah sebagai berikut \
+![image](https://user-images.githubusercontent.com/7587945/139522910-352a770e-f632-4bd1-b6ed-7dd0e5a3cc92.png) \
+Untuk Skypie, buka file /etc/apache2/sites-available/franky.e09.com.conf dan ubah DocumentRoot dan Directory menjadi /var/www/franky.yyy.com serta ServerName menjadi franky.e09.com dan ServerAlias menjadi www.franky.e09.com. \
+![image](https://user-images.githubusercontent.com/7587945/139523040-c7dc9724-560e-4f9d-8fcf-c6ccbfe31d73.png) \
+Kemudian pergi ke /var/www/franky.e09.com/, buka index.php dan arahkan menggunakan file yang telah didownload di github sebelumnya. \
+![image](https://user-images.githubusercontent.com/7587945/139523050-b693dd85-80b3-4599-abf6-1952e8433b3f.png) \
+Buka lynx 192.204.2.4 dan lynx www.franky.e09.com pada Loguetown. Keduanya akan mengarah ke IP yang sama sehingga menghasilkan webserver yang sama. \
+![image](https://user-images.githubusercontent.com/7587945/139523127-be4fc980-33a8-4dc3-b7c8-4b66b5f1b3bd.png)
 
 ### 9. Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
 
-### 10. Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
+Buka file /etc/apache2/sites-available/franky.e09.com.conf pada Skypie dan ganti Alias menjadi "\home". \
+![image](https://user-images.githubusercontent.com/7587945/139523215-1b467043-8342-402e-bee6-79a24266dd10.png) \
+Buka lynx franky.e09.com/index.php/home dan lynx franky.e09.com/homedan dan keduanya akan menghasilkan sebagai berikut. \
+![image](https://user-images.githubusercontent.com/7587945/139523289-b724dce4-16f5-42ce-a21a-1a5ac187ae19.png)
+
+### 10. Setelah itu, pada subdomain www.super.franky.yyy.com, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada /var/www/super.franky.yyy.com
+
+Buka file /etc/apache2/sites-available/super.franky.e09.com.conf pada Skypie dan ubah DocumentRoot menjadi /var/www/super.franky.yyy.com \
+![image](https://user-images.githubusercontent.com/7587945/139523352-18440e36-d10a-4a6d-982b-5cc781cb1949.png) \
+Buka lynx super.franky.e09.com dan dia akan bisa buka aset. \
+![image](https://user-images.githubusercontent.com/7587945/139523398-05568c85-f06e-4b60-a6f2-b0c1d16e09bd.png)
 
 ### 11. Akan tetapi, pada folder /public, Luffy ingin hanya dapat melakukan directory listing saja
 
+Buka file /etc/apache2/sites-available/super.franky.e09.com.conf pada Skypie dan tambahkan pada /public "Options +Indexes" \
+![image](https://user-images.githubusercontent.com/7587945/139523438-b1a8683c-1407-4730-af94-1bd3d2f3b881.png) \
+Buka lynx super.franky.e09.com/public, maka akan muncul directory listing. \
+![image](https://user-images.githubusercontent.com/7587945/139523466-4385b672-5e85-4f81-a7b8-7ab35c792043.png)
+
 ### 12. Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder /errors untuk mengganti error kode pada apache
+
+Pada Skypie, buka file /etc/apache2/sites-available/super.franky.e09.com.conf dan ubah ErrorDocument menjadi 404 /error/404.html \
+![image](https://user-images.githubusercontent.com/7587945/139523512-6472b5ec-ac84-4ef8-9a89-dd076df0323c.png) \
+Buka lynx super.franky.e09.com/aowkwkwkwk maka akan muncul sebagai berikut. \
+![image](https://user-images.githubusercontent.com/7587945/139523560-313d61be-1ccf-47a7-8239-3c8711734aa5.png)
 
 ### 13. Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.super.franky.yyy.com/public/js menjadi www.super.franky.yyy.com/js
 
